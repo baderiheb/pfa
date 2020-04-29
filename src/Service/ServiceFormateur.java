@@ -5,6 +5,7 @@ import connectionDB.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+// classe service formateur
 
 public class ServiceFormateur {
     private Connection cnx ;
