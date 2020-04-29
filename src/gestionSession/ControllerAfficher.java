@@ -29,7 +29,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-public class Controller implements Initializable {
+public class ControllerAfficher implements Initializable {
     Connection cnx = DataSource.getInstance();
 
     @FXML
@@ -153,13 +153,15 @@ public class Controller implements Initializable {
 
     public void afficher1(){
         try{
-            Vector <Formateur> formats = new Vector<Formateur>() ;
+
             Obs=FXCollections.observableArrayList();
         ServiceSession sess =new ServiceSession();
         ResultSet rs = sess.afficher();
         String req2,req3;
         Connection con=DataSource.getInstance();
             while(rs.next()){
+
+                Vector <Formateur> formats = new Vector<Formateur>() ;
                 req2="select * from forma where idf="+rs.getString(2);
                 ResultSet rs2=con.createStatement().executeQuery(req2);
                 while(rs2.next()){
