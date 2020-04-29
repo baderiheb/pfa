@@ -184,7 +184,7 @@ public class ControllerAfficher implements Initializable {
         }
 
         IDs.setCellValueFactory(new PropertyValueFactory<Session,Integer>("ids"));
-        IDf.setCellValueFactory(new PropertyValueFactory<Session,Integer>("forma"));
+        IDf.setCellValueFactory(new PropertyValueFactory<Session,Integer>("form.getIdfor()"));
         IDfor.setCellValueFactory(new PropertyValueFactory<Session,Integer>("idformation"));
         nom.setCellValueFactory(new PropertyValueFactory<Session,String>("nom"));
         ddebut.setCellValueFactory(new PropertyValueFactory<Session,String>("date"));

@@ -96,4 +96,5 @@ public class Session {
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
     }
+
 }
