@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="prec" prefHeight="400.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionFormation.ControllerRechercher">
+   <children>
+      <Pane prefHeight="500.0" prefWidth="217.0" style="-fx-background-color: #27ABE4;">
+         <children>
+            <Label layoutX="13.0" layoutY="26.0" text="Information du session" textFill="#f5f4f4">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="choi" layoutX="6.0" layoutY="82.0" onAction="#loadControl" prefHeight="25.0" prefWidth="198.0" promptText="Choisie la methode de recherche" />
+            <ComboBox fx:id="choix1" layoutX="6.0" layoutY="139.0" prefHeight="25.0" prefWidth="198.0" />
+            <TextField fx:id="name" layoutX="9.0" layoutY="140.0" prefHeight="26.0" prefWidth="198.0" />
+            <JFXButton fx:id="btn" layoutX="120.0" layoutY="189.0" onAction="#rechercher" prefHeight="32.0" prefWidth="83.0" style="-fx-background-color: #66ccff;" text="Confirmer" />
+         </children>
+      </Pane>
+      <JFXButton fx:id="retourner" layoutX="770.0" layoutY="438.0" prefHeight="32.0" prefWidth="69.0" style="-fx-background-color: #32CD32;" text="Retourner" />
+      <TableView fx:id="table" editable="true" layoutX="217.0" layoutY="96.0" mouseTransparent="true" prefHeight="278.0" prefWidth="653.0">
+         <columns>
+            <TableColumn fx:id="ID" prefWidth="52.0" text="ID" />
+            <TableColumn fx:id="names" prefWidth="76.0" text="Nom" />
+            <TableColumn fx:id="prenom" prefWidth="115.0" text="Type">
+               <columns>
+                  <TableColumn fx:id="typ" prefWidth="68.0" />
+                  <TableColumn fx:id="niveau" prefWidth="59.0" text="Niveau" />
+                  <TableColumn fx:id="nature" prefWidth="65.0" text="Nature" />
+               </columns>
+            </TableColumn>
+            <TableColumn fx:id="domain" prefWidth="112.0" text="Domaine" />
+            <TableColumn fx:id="tarifs" prefWidth="62.0" text="Tarif" />
+            <TableColumn fx:id="Duree" prefWidth="66.0" text="Durée" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

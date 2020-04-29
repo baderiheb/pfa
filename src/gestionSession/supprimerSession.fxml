@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="prec" prefHeight="400.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionSession.ControllerSupprimer">
+   <children>
+      <Pane prefHeight="500.0" prefWidth="266.0" style="-fx-background-color: #27ABE4;">
+         <children>
+            <JFXButton fx:id="rech" layoutX="180.0" layoutY="234.0" onAction="#rechercher" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #99ABD6;" text="rechercher" />
+            <TextField fx:id="element" layoutX="14.0" layoutY="198.0" prefHeight="26.0" prefWidth="209.0" style="-fx-background-color: #CCDFE7;" />
+            <Label fx:id="txt1" layoutX="5.0" layoutY="172.0" text="veuillez choisir a méthode de recherche">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="choix" layoutX="14.0" layoutY="199.0" prefWidth="150.0" />
+            <Label fx:id="txt2" layoutX="11.0" layoutY="169.0" prefHeight="25.0" prefWidth="256.0" text="Entrez le nom de la formation">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="DateS" layoutX="11.0" layoutY="199.0" prefHeight="25.0" prefWidth="209.0" />
+            <Label fx:id="txt3" layoutX="9.0" layoutY="169.0" prefHeight="25.0" prefWidth="256.0" text="Entrez la date de la  formation">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="confirmer" layoutX="180.0" layoutY="235.0" onAction="#confirmer" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #99ABD6;" text="Confirmer" />
+            <JFXButton fx:id="ret" layoutX="83.0" layoutY="234.0" onAction="#retourner" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #32CD32;" text="Annuler" />
+            <Label layoutX="14.0" layoutY="127.0" text="Rechercher">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <JFXButton fx:id="retourner" layoutX="817.0" layoutY="434.0" prefHeight="32.0" prefWidth="69.0" style="-fx-background-color: #32CD32;" text="Retourner" />
+      <TableView fx:id="table" layoutX="266.0" layoutY="107.0" onContextMenuRequested="#control" onDragDetected="#control" onSort="#control" prefHeight="298.0" prefWidth="646.0">
+         <columns>
+            <TableColumn fx:id="IDs" prefWidth="115.0" text="ID Session" />
+            <TableColumn fx:id="IDf" prefWidth="87.0" text="ID Formateur" />
+            <TableColumn fx:id="IDfor" prefWidth="96.0" text="ID Formation" />
+            <TableColumn fx:id="nom" prefWidth="105.0" text="Nom Formation" />
+            <TableColumn fx:id="ddebut" prefWidth="115.0" text="Date Debut" />
+            <TableColumn fx:id="duree" prefWidth="177.0" text="Durée" />
+         </columns>
+      </TableView>
+      <BorderPane layoutX="266.0" prefHeight="100.0" prefWidth="646.0" style="-fx-background-color: #27ABE4;">
+         <left>
+            <Label text="Supprimer" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="28.0" />
+               </font>
+            </Label>
+         </left></BorderPane>
+   </children>
+</AnchorPane>

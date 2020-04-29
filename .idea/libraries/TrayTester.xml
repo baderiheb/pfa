@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="TrayTester">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/TrayTester.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/fontawesomefx-8.9.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/fontawesomefx-8.0.1.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/controlsfx-8.40.11.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/charm-glisten-6.0.3.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/javafx_register_example-master.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Desktop/JavaFXSpringBootApp-master.zip!/JavaFXSpringBootApp-master/src/main/java" />
+      <root url="jar://$USER_HOME$/Desktop/javafx_register_example-master.zip!/javafx_register_example-master/src" />
+      <root url="file://$PROJECT_DIR$/src" />
+    </SOURCES>
+  </library>
+</component>

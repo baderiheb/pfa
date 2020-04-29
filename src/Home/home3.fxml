@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="client" prefHeight="500.0" prefWidth="920.0" style="-fx-background-color: #b3d9ff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Home.Controller2">
+   <children>
+      <ImageView fitHeight="478.0" fitWidth="926.0" layoutY="25.0" opacity="0.68" pickOnBounds="true">
+         <image>
+            <Image url="@background/121025406-e-learning-concept-with-a-man-on-a-blue-background.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="49.0" layoutY="199.0" text="Ajouter un client">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
+      <MenuBar layoutX="-1.0" prefHeight="25.0" prefWidth="926.0" style="-fx-background-color: #0059b3;">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <JFXButton fx:id="precedent" layoutX="825.0" layoutY="451.0" onAction="#retourner" prefHeight="37.0" prefWidth="86.0" style="-fx-background-color: #32CD32;" text="Retourner" />
+      <ImageView fx:id="addC" fitHeight="150.0" fitWidth="187.0" layoutX="82.0" layoutY="43.0" onMouseClicked="#ajouter" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background/ajouter-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rechercher" fitHeight="150.0" fitWidth="200.0" layoutX="387.0" layoutY="43.0" onMouseClicked="#rechercher" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background/search%20user.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="347.0" layoutY="199.0" text="Rechercher un client">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="afficher" fitHeight="170.0" fitWidth="500.0" layoutX="679.0" layoutY="13.0" onMouseClicked="#afficher" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background/img_507340-removebg-preview%20(1).png" />
+         </image>
+      </ImageView>
+      <Label layoutX="674.0" layoutY="199.0" text="Afficher les clients">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="rechercherF" fitHeight="150.0" fitWidth="187.0" layoutX="82.0" layoutY="260.0" onMouseClicked="#modifier" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background/update-user-icon-png.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="13.0" layoutY="422.0" text="Mettre a jour un client">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="678.0" layoutY="422.0" text="Se deconnecter">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="deconnecter" fitHeight="150.0" fitWidth="200.0" layoutX="696.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background/logout-512.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="delete" fitHeight="150.0" fitWidth="200.0" layoutX="369.0" layoutY="260.0" onMouseClicked="#supprimer" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background/img_529679.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="339.0" layoutY="422.0" text="Supprimer un client">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

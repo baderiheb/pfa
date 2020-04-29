@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="ShowS" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionSession.Controller">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="248.0" style="-fx-background-color: #27ABE4;" text="Liste des sessions ">
+         <font>
+            <Font name="Arial Unicode MS" size="24.0" />
+         </font>
+      </Label>
+      <Line endX="768.0" layoutX="115.0" layoutY="58.0" startX="-100.0" />
+      <JFXButton fx:id="retourner" layoutX="815.0" layoutY="19.0" style="-fx-background-color: #32CD32;" text="Retourner" />
+      <TableView fx:id="table1" layoutX="40.0" layoutY="68.0" onMouseClicked="#control" prefHeight="195.0" prefWidth="844.0">
+         <columns>
+            <TableColumn fx:id="IDs" prefWidth="115.0" text="ID Session" />
+            <TableColumn fx:id="IDf" prefWidth="87.0" text="ID Formateur" />
+            <TableColumn fx:id="IDfor" prefWidth="96.0" text="ID Formation" />
+            <TableColumn fx:id="nom" prefWidth="126.0" text="Nom Formation" />
+            <TableColumn fx:id="ddebut" prefWidth="132.0" text="Date Debut" />
+            <TableColumn fx:id="duree" prefWidth="139.0" text="Durée" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table2" editable="true" layoutX="216.0" layoutY="273.0" mouseTransparent="true" prefHeight="85.0" prefWidth="668.0">
+         <columns>
+            <TableColumn fx:id="ID" prefWidth="52.0" text="ID" />
+            <TableColumn fx:id="names" prefWidth="76.0" text="Nom" />
+            <TableColumn fx:id="prenom" prefWidth="115.0" text="Type">
+               <columns>
+                  <TableColumn fx:id="typ" prefWidth="68.0" />
+                  <TableColumn fx:id="niveau" prefWidth="59.0" text="Niveau" />
+                  <TableColumn fx:id="nature" prefWidth="65.0" text="Nature" />
+               </columns>
+            </TableColumn>
+            <TableColumn fx:id="domain" prefWidth="112.0" text="Domaine" />
+            <TableColumn fx:id="tarifs" prefWidth="62.0" text="Tarif" />
+            <TableColumn fx:id="Duree" prefWidth="173.0" text="Durée" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table3" layoutX="216.0" layoutY="366.0" prefHeight="66.0" prefWidth="668.0">
+         <columns>
+            <TableColumn fx:id="ID1" prefWidth="94.0" text="ID" />
+            <TableColumn fx:id="nom1" prefWidth="73.0" text="Nom" />
+            <TableColumn fx:id="prenom1" prefWidth="97.0" text="Prenom" />
+            <TableColumn fx:id="adresse" prefWidth="75.0" text="Adresse" />
+            <TableColumn fx:id="cin" prefWidth="138.0" text="Cin" />
+            <TableColumn fx:id="Numtel" prefWidth="190.0" text="NumeroT" />
+         </columns>
+      </TableView>
+      <Label fx:id="l1" layoutX="11.0" layoutY="307.0" prefHeight="22.0" prefWidth="198.0" text="Information du formation">
+         <font>
+            <Font name="Bernard MT Condensed" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="l2" layoutX="11.0" layoutY="388.0" prefHeight="22.0" prefWidth="198.0" text="Information du formateur">
+         <font>
+            <Font name="Bernard MT Condensed" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

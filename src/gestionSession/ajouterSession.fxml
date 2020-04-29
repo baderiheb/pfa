@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="prec" prefHeight="400.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionSession.ControllerAjouter">
+   <children>
+      <Pane layoutY="-7.0" prefHeight="511.0" prefWidth="277.0" style="-fx-background-color: #27ABE4;">
+         <children>
+            <Label layoutX="30.0" layoutY="29.0" text="Information du session">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btn" layoutX="177.0" layoutY="471.0" onAction="#verifieDisspo" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #99ABD6;" text="Ajouter" />
+            <TextField fx:id="name" layoutX="23.0" layoutY="75.0" prefHeight="26.0" prefWidth="209.0" promptText="Nom" style="-fx-background-color: #CCDFE7;" />
+            <DatePicker fx:id="DateS" layoutX="23.0" layoutY="220.0" prefHeight="25.0" prefWidth="209.0" promptText="Date de debut" />
+            <ComboBox fx:id="cin" layoutX="23.0" layoutY="109.0" onAction="#formateurController" prefHeight="25.0" prefWidth="209.0" promptText="Cin Formateur" />
+            <ComboBox fx:id="forma" layoutX="23.0" layoutY="148.0" onAction="#formationController" prefHeight="25.0" prefWidth="209.0" promptText="ID Formation" />
+            <TextField fx:id="nbreh" layoutX="23.0" layoutY="185.0" prefHeight="26.0" prefWidth="209.0" promptText="Durée de la formation en H" style="-fx-background-color: #CCDFE7;" />
+            <TextField fx:id="f1" layoutX="23.0" layoutY="149.0" prefHeight="26.0" prefWidth="209.0" promptText="ID" style="-fx-background-color: #CCDFE7;" />
+            <TextField fx:id="f2" layoutX="23.0" layoutY="185.0" prefHeight="26.0" prefWidth="209.0" promptText="Nom" style="-fx-background-color: #CCDFE7;" />
+            <TextField fx:id="f3" layoutX="23.0" layoutY="220.0" prefHeight="26.0" prefWidth="209.0" promptText="Prenom" style="-fx-background-color: #CCDFE7;" />
+            <JFXButton fx:id="Cconfirmer" layoutX="146.0" layoutY="351.0" onAction="#confirmer" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #99ABD6;" text="Confirmer" />
+            <DatePicker fx:id="DateF" layoutX="23.0" layoutY="266.0" onAction="#verifierDate" prefHeight="26.0" prefWidth="209.0" promptText="Date fin " />
+            <ComboBox fx:id="salle" layoutX="23.0" layoutY="303.0" prefHeight="28.0" prefWidth="209.0" promptText="salle" />
+            <Label layoutX="23.0" layoutY="401.0" text="Horaire du session">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="9.0" layoutY="441.0" text="Debut">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="hd" layoutX="58.0" layoutY="438.0" prefHeight="25.0" prefWidth="69.0" promptText="hd" />
+            <TextField fx:id="hf" layoutX="186.0" layoutY="438.0" prefHeight="25.0" prefWidth="69.0" promptText="hf" />
+            <Label layoutX="152.0" layoutY="441.0" text="Fin">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="Cconfirmer1" layoutX="41.0" layoutY="341.0" onAction="#setCommentaire" prefHeight="32.0" prefWidth="209.0" style="-fx-background-color: #99ABD6;" text="Ajouter un commentaire" />
+         </children>
+      </Pane>
+      <JFXButton fx:id="retourner" layoutX="815.0" layoutY="443.0" style="-fx-background-color: #32CD32;" text="Retourner" />
+      <TableView fx:id="table" layoutX="277.0" layoutY="28.0" prefHeight="382.0" prefWidth="753.0">
+         <columns>
+            <TableColumn fx:id="IDs" prefWidth="66.0" text="ID Session" />
+            <TableColumn fx:id="IDf" prefWidth="79.0" text="ID Formateur" />
+            <TableColumn fx:id="IDfor" prefWidth="85.0" text="ID Formation" />
+            <TableColumn fx:id="numsalle" prefWidth="85.0" text="Numéro salle " />
+            <TableColumn fx:id="nom" prefWidth="103.0" text="Nom Formation" />
+            <TableColumn fx:id="ddebut" prefWidth="78.0" text="Date Debut" />
+            <TableColumn fx:id="dateFin" prefWidth="87.0" text="Date Fin" />
+            <TableColumn fx:id="duree" prefWidth="75.0" text="Durée" />
+            <TableColumn fx:id="comm" prefWidth="90.0" text="Commanteire" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

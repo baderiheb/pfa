@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="showf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="afficher.Controller">
+   <children>
+      <TableView fx:id="table" layoutX="69.0" layoutY="96.0" prefHeight="278.0" prefWidth="704.0">
+        <columns>
+          <TableColumn fx:id="ID" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nom" prefWidth="75.0" text="Nom" />
+            <TableColumn fx:id="prenom" prefWidth="75.0" text="Prenom" />
+            <TableColumn fx:id="adresse" prefWidth="75.0" text="Adresse" />
+            <TableColumn fx:id="cin" prefWidth="75.0" text="Cin" />
+            <TableColumn fx:id="Numtel" prefWidth="150.0" text="NumeroT" />
+        </columns>
+      </TableView>
+      <Label layoutX="22.0" layoutY="30.0" prefHeight="17.0" prefWidth="248.0" style="-fx-background-color: #27ABE4;" text="Liste des formateurs ">
+         <font>
+            <Font name="Arial Unicode MS" size="24.0" />
+         </font>
+      </Label>
+      <Line endX="768.0" layoutX="122.0" layoutY="75.0" startX="-100.0" />
+      <JFXButton fx:id="retourner" layoutX="811.0" layoutY="398.0" onAction="#precedent" style="-fx-background-color: #32CD32;" text="Retourner" />
+   </children>
+</Pane>
