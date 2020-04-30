@@ -2,7 +2,7 @@
 
 
 
-public class Formateur {
+public class Formateur  {
 
 	private int id;
 	private String nom ;

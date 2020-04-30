@@ -13,10 +13,18 @@ public class ServiceFormateur {
         this.cnx= DataSource.getInstance();
     }
     // affichage avec un condition d'id
+
     public ResultSet afficherID(String ID ) throws SQLException {
 String req ="select * from forma where idf="+ID;
         ResultSet rs = cnx.createStatement().executeQuery(req);
    return rs ;
+    }
+
+   // affichage avec un condition de cin
+    public ResultSet afficherCin (String cin) throws SQLException {
+ String req= "select * from forma where cin ="+cin ;
+ ResultSet rs=cnx.createStatement().executeQuery(req);
+ return rs ;
     }
 
 }

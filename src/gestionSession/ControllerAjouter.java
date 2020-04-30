@@ -1,5 +1,9 @@
 package gestionSession;
 
+import Notification.Tray;
+import Service.ServiceFormateur;
+import Service.ServiceFormation;
+import Service.ServiceSession;
 import com.jfoenix.controls.JFXButton;
 import connectionDB.DataSource;
 import connectionDB.Formateur;
@@ -16,12 +20,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -34,6 +40,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.text.DateFormat;
+import java.util.Vector;
+
+import static java.lang.Integer.parseInt;
 
 
 public class ControllerAjouter implements Initializable {
@@ -97,27 +106,82 @@ public class ControllerAjouter implements Initializable {
     @FXML
     private DatePicker DateF ;
     @FXML
-    private TextField commentaire ;
+    private TextArea commentaire ;
     @FXML
     private ComboBox salle ;
+    @FXML
+    private ComboBox forma1 ;
+    @FXML
+    private ComboBox forma2;
+    @FXML
+    private ComboBox forma3;
+  @FXML
+  private Text t1;
+  @FXML
+  private Text t2;
+  @FXML
+  private Text t3;
+  @FXML
+  private ComboBox temps ;
+  Tray t = new Tray();
 
-    public void verifieDisspo() throws ParseException {
-        String HD  =hd.getText();
-                  DateFormat sdf  = new SimpleDateFormat("HH:mm");
-        Date d = sdf.parse(HD);
-        System.out.println(d);
+
+
+    public void plus1(){
+
+        forma2.setVisible(true);
+        forma1.setVisible(false);
+        t2.setText("+");
+        t3.setText("");
+        forma3.setVisible(true);
+        forma2.setVisible(false);
+        forma1.setVisible(false);
+       commentaire.setLayoutX(7);
+       commentaire.setLayoutY(123);
+
+
+
     }
-    public void setCommentaire() throws  IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("comm.fxml"));
-        Scene scene = new Scene(root, 920 ,500);
-        Stage primaryStage = new Stage();
-        primaryStage.setScene(scene);
-        primaryStage.show();
-}
+    public void plus2(){
+
+        forma2.setVisible(true);
+        forma1.setVisible(false);
+        t2.setText("+");
+        t3.setText("+");
+        forma3.setVisible(true);
+        forma2.setVisible(true);
+        forma1.setVisible(false);
+        commentaire.setVisible(true);
+        commentaire.setLayoutX(7);
+        commentaire.setLayoutY(165);
+
+
+    }
+    public void plus3(){
+
+        forma2.setVisible(true);
+        forma1.setVisible(false);
+        t2.setText("+");
+        t3.setText("+");
+        forma3.setVisible(true);
+        forma2.setVisible(true);
+        forma1.setVisible(true);
+        commentaire.setVisible(true);
+        commentaire.setLayoutX(7);
+        commentaire.setLayoutY(198);
+
+
+    }
 
 
 
+    ObservableList list4= FXCollections.observableArrayList();
+    public void loadtemp(){
+        list4.removeAll(list4);
+        list4.addAll("Tous les jours","Les jours paires seulement", "Les jours impaires seulement");
+        temps.getItems().addAll(list4);
 
+    }
 
     public void loadF() {
         try {
@@ -126,6 +190,9 @@ public class ControllerAjouter implements Initializable {
             ResultSet rs = cnx.createStatement().executeQuery(req);
             while (rs.next()) {
                 cin.getItems().add(rs.getString(1));
+                forma1.getItems().add(rs.getString(1));
+                forma2.getItems().add(rs.getString(1));
+                forma3.getItems().add(rs.getString(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -152,23 +219,18 @@ public class ControllerAjouter implements Initializable {
                 ResultSet rs = cnx.createStatement().executeQuery(req1);
                 while (rs.next()) {
                     forma.getItems().add(rs.getString(1));
+
+
+
+
                 }
             } catch (SQLException e){
                 e.printStackTrace();
             }
     }
     public void formateurController () throws SQLException {
-        forma.setVisible(false);
-        nbreh.setVisible(false);
-        DateS.setVisible(false);
-        btn.setVisible(false);
-        DateF.setVisible(false);
-        salle.setVisible(false);
-        commentaire.setVisible(false);
-        f1.setVisible(true);
-        f2.setVisible(true);
-        f3.setVisible(true);
-        Cconfirmer.setVisible(true);
+        commentaire.setVisible(true);
+
         String req1 = "select * from forma where cin = " + cin.getValue();
         ResultSet rs = cnx.createStatement().executeQuery(req1);
         while (rs.next()) {
@@ -180,18 +242,13 @@ public class ControllerAjouter implements Initializable {
     }
 
 
+
     public void formationController() throws SQLException {
-        forma.setVisible(false);
-        nbreh.setVisible(false);
-        DateS.setVisible(false);
-        btn.setVisible(false);
-        DateF.setVisible(false);
-        salle.setVisible(false);
-        commentaire.setVisible(false);
+
+        commentaire.setVisible(true);
         f1.setVisible(true);
         f2.setVisible(true);
         f3.setVisible(true);
-        Cconfirmer.setVisible(true);
         String req2 = "select * from formation where idfor =" + forma.getValue();
         Connection cnx = DataSource.getInstance();
         ResultSet rs2 = cnx.createStatement().executeQuery(req2);
@@ -206,20 +263,6 @@ public class ControllerAjouter implements Initializable {
 
 
 
-public void confirmer(){
-        f1.setVisible(false);
-        f2.setVisible(false);
-        f3.setVisible(false);
-        DateS.setVisible(true);
-        nbreh.setVisible(true);
-        forma.setVisible(true);
-        btn.setVisible(true);
-        Cconfirmer.setVisible(false);
-    DateF.setVisible(true);
-    salle.setVisible(true);
-    commentaire.setVisible(true);
-
-}
 
 public Formateur f ;
     public Formation form;
@@ -230,29 +273,31 @@ public Formateur f ;
     ObservableList<Formateur> Obs1 ;
 
 
-
+//afficher les information session dans un tableau
+ServiceSession ss = new ServiceSession();
+    ServiceFormateur sf=new ServiceFormateur();
+    ServiceFormation sforma = new ServiceFormation();
     public void afficher(){
         try{
         Obs=FXCollections.observableArrayList();
-        Connection con = DataSource.getInstance();
-        ResultSet rs = con.createStatement().executeQuery("SELECT * FROM sess");
-        String req2="";
-        String req3="";
 
+
+        ResultSet rs =ss.afficher();
         while(rs.next()){
-            req2="select * from forma where idf="+rs.getString(2);
-            ResultSet rs2=con.createStatement().executeQuery(req2);
+            Vector<Formateur> formats = new Vector<Formateur>() ;
+            ResultSet rs2=sf.afficherID(rs.getString(2));
             while(rs2.next()){
+
                 f=new Formateur (rs2.getInt(1),rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getInt(5),rs2.getInt(6));
+           formats.add(f);
             }
-            req3="select * from formation where idfor="+rs.getString(3);
-            ResultSet rs3=con.createStatement().executeQuery(req3);
+            ResultSet rs3=sforma.afficherID(rs.getString(3));
             while (rs3.next()){
                 form=new Formation(rs3.getInt(1),  rs3.getString(2), rs3.getString(3), rs3.getString(4), rs3.getString(5), rs3.getString(6) ,rs3.getString(7), rs3.getFloat(8));
             }
 
-           /*Session s =new Session(rs.getInt(1),f,form,rs.getString(4),rs.getString(5),rs.getFloat(6),rs.getInt(7),rs.getString(8),rs.getString(9));
-Obs.add(s);*/
+           Session s =new Session(rs.getInt(1),formats,form,rs.getString(4),rs.getString(5),rs.getFloat(6),rs.getInt(7),rs.getString(8),rs.getString(9));
+Obs.add(s);
         }
 
     } catch (SQLException e) {
@@ -261,73 +306,37 @@ Obs.add(s);*/
 
 
         IDs.setCellValueFactory(new PropertyValueFactory<Session,Integer>("ids"));
-        IDf.setCellValueFactory(new PropertyValueFactory<Session,Integer>("idformateur"));
+        IDf.setCellValueFactory(new PropertyValueFactory<Session,Integer>("forma"));
         IDfor.setCellValueFactory(new PropertyValueFactory<Session,Integer>("idformation"));
         nom.setCellValueFactory(new PropertyValueFactory<Session,String>("nom"));
         ddebut.setCellValueFactory(new PropertyValueFactory<Session,String>("date"));
         duree.setCellValueFactory(new PropertyValueFactory<Session,Float>("duree"));
         numsalle.setCellValueFactory(new PropertyValueFactory<Session,Integer>("numSalle"));
         dateFin.setCellValueFactory(new PropertyValueFactory<Session,String>("dateFin"));
-
-
-
-
-
-
         table.setItems(Obs);
-
-
-
     }
     public void ajouter() throws  SQLException{
         if(name.getText().equalsIgnoreCase("")){
-            TrayNotification tray = new TrayNotification();
-            AnimationType type = AnimationType.SLIDE;
-            tray.setAnimationType(type);
-            tray.setTitle("Erreur");
-            tray.setMessage(" Saisir le nom session ");
-            tray.setNotificationType(NotificationType.ERROR);
-            tray.showAndDismiss(Duration.millis(3000));
+            t.trayError("Saisir le nom session");
         return;
         } if(DateS.getValue().equals(null)){
-            TrayNotification tray = new TrayNotification();
-            AnimationType type = AnimationType.SLIDE;
-            tray.setAnimationType(type);
-            tray.setTitle("Erreur");
-            tray.setMessage(" Verifier la date de la session  ");
-            tray.setNotificationType(NotificationType.NOTICE);
-            tray.showAndDismiss(Duration.millis(3000));
+           t.trayError(" Verifier la date de la session  ");
         return ;
         }
         verifierDate();
-        String req1 = "select * from forma where cin = " + cin.getValue();
-        ResultSet rs = cnx.createStatement().executeQuery(req1);
-      String id="",id2="";
+        if((VerifieHD()==false)&&(VerifieHF()==false)){
+            t.trayError("Veuillez verifier l'heure de debut ou l'heure de fin de la session ");
+        }
+        ResultSet rs = sf.afficherCin((String) cin.getValue());
+      String id="";
         while (rs.next()) {
-
              id=rs.getString(1);
         }
-        String req2 = "select * from formation where idfor =" + forma.getValue();
-        Connection cnx = DataSource.getInstance();
-        ResultSet rs2 = cnx.createStatement().executeQuery(req2);
-        while (rs2.next()) {
-             id2=rs2.getString(1);
-        }
 
-
-
-        String req3 = "insert into sess VALUES (ids.nextval,"+id+","+id2+",'"+name.getText()+"','"+DateS.getValue()+"',"+nbreh.getText()+","+salle.getValue()+",'"+DateF.getValue()+"','"+commentaire.getText()+"')";
-    System.out.println(req3);
-    Connection cnc=DataSource.getInstance();
-        cnc.createStatement().executeUpdate(req3);
-        TrayNotification tray = new TrayNotification();
-        AnimationType type = AnimationType.SLIDE;
-        tray.setAnimationType(type);
-        tray.setTitle("Success");
-        tray.setMessage(" Ajouter avex succés");
-        tray.setNotificationType(NotificationType.SUCCESS);
-        tray.showAndDismiss(Duration.millis(3000));
    afficher();
+
+    }
+    public void salleDisqpo(){
 
     }
     public static final LocalDate LOCAL_DATE (String dateString){
@@ -348,43 +357,30 @@ Obs.add(s);*/
                 if (datedebut.getDayOfMonth() - datefin.getDayOfMonth() <= 0) {
                     System.out.println("SUCESS");
                 } else {
-                    TrayNotification tray = new TrayNotification();
-                    AnimationType type = AnimationType.SLIDE;
-                    tray.setAnimationType(type);
-                    tray.setTitle("Error");
-                    tray.setMessage(" Verifier la date de debut et la date de fin de la session");
-                    tray.setNotificationType(NotificationType.ERROR);
-                    tray.showAndDismiss(Duration.millis(9000));
-                    return;
-
-
+                    t.trayError("Verifier la date de debut et la date de fin de la session");
                 }
 
             } else {
-                TrayNotification tray = new TrayNotification();
-                AnimationType type = AnimationType.SLIDE;
-                tray.setAnimationType(type);
-                tray.setTitle("Error");
-                tray.setMessage(" Verifier la date de debut et la date de fin de la session");
-                tray.setNotificationType(NotificationType.ERROR);
-                tray.showAndDismiss(Duration.millis(9000));
-                return;
-
+                t.trayError("Verifier la date de debut et la date de fin de la session");
             }
 
 
         }else {
-            TrayNotification tray = new TrayNotification();
-            AnimationType type = AnimationType.SLIDE;
-            tray.setAnimationType(type);
-            tray.setTitle("Error");
-            tray.setMessage(" Verifier la date de debut et la date de fin de la session");
-            tray.setNotificationType(NotificationType.ERROR);
-            tray.showAndDismiss(Duration.millis(9000));
-            return;
+            t.trayError("Verifier la date de debut et la date de fin de la session");
         }
         }
+public boolean VerifieHD(){
+    if ((Integer.parseInt(hd.getText())>=8) && (Integer.parseInt(hd.getText())<=17)){
+return true ;
 
+    }else return false ;
+}
+public boolean VerifieHF(){
+    if ((Integer.parseInt(hf.getText())>=9) && (Integer.parseInt(hd.getText())<=22)) {
+        return true;
+    }else return false ;
+
+    }
     public void initialize(URL url, ResourceBundle resourceBundle) {
 afficher();
          loadF();
@@ -393,8 +389,13 @@ afficher();
 f1.setVisible(false);
 f2.setVisible(false);
 f3.setVisible(false);
-Cconfirmer.setVisible(false);
-//loadList();
-
+loadtemp();
+        forma2.setVisible(false);
+        forma1.setVisible(false);
+        forma3.setVisible(false);
+        t2.setText("");
+        t3.setText("");
+        commentaire.setLayoutX(7);
+        commentaire.setLayoutY(84);
     }
 }

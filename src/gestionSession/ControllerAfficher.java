@@ -168,23 +168,23 @@ public class ControllerAfficher implements Initializable {
 
                     f=new Formateur (rs2.getInt(1),rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getInt(5),rs2.getInt(6));
                     formats.add(f);
+
                 }
                 req3="select * from formation where idfor="+rs.getString(3);
                 ResultSet rs3=con.createStatement().executeQuery(req3);
                 while (rs3.next()){
                     form=new Formation(rs3.getInt(1),  rs3.getString(2), rs3.getString(3), rs3.getString(4), rs3.getString(5), rs3.getString(6) ,rs3.getString(7), rs3.getFloat(8));
                 }
-
                 Session s =new Session(rs.getInt(1),formats,form,rs.getString(4),rs.getString(5),rs.getFloat(6),rs.getInt(7),rs.getString(8),rs.getString(9));
                 Obs.add(s);
+
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         IDs.setCellValueFactory(new PropertyValueFactory<Session,Integer>("ids"));
-        IDf.setCellValueFactory(new PropertyValueFactory<Session,Integer>("form.getIdfor()"));
+        IDf.setCellValueFactory(new PropertyValueFactory<Session,Integer>("forma"));
         IDfor.setCellValueFactory(new PropertyValueFactory<Session,Integer>("idformation"));
         nom.setCellValueFactory(new PropertyValueFactory<Session,String>("nom"));
         ddebut.setCellValueFactory(new PropertyValueFactory<Session,String>("date"));

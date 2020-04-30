@@ -75,6 +75,7 @@ public class ControllerAfficher implements Initializable {
 
     }
 
+
     public void afficher(){
 
        try{

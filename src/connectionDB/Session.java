@@ -2,9 +2,10 @@ package connectionDB;
 
 import java.util.Vector;
 
-public class Session {
+public class Session extends Vector{
     private int ids;
     private Vector <Formateur> forma ;
+    private int idf;
     private Formation idformation;
     private String nom;
     private String date;
@@ -14,6 +15,7 @@ public class Session {
     private String commentaire ;
 
     public Session(int ids, Vector<Formateur> forma, Formation idformation, String nom, String date, float duree, int numSalle, String dateFin, String commentaire) {
+
         this.ids = ids;
         this.forma = forma;
         this.idformation = idformation;
@@ -96,5 +98,10 @@ public class Session {
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
     }
+    @Override
+    public String toString() {
+        return ""+this.forma.get(0).getId();
+    }
+
 
 }
