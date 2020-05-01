@@ -32,7 +32,7 @@
                               <DatePicker fx:id="DateS" layoutX="6.0" layoutY="95.0" prefHeight="25.0" prefWidth="223.0" promptText="Date de debut" />
                               <DatePicker fx:id="DateF" layoutX="6.0" layoutY="135.0" onAction="#verifierDate" prefHeight="26.0" prefWidth="223.0" promptText="Date fin " />
                               <ComboBox fx:id="salle" layoutX="6.0" layoutY="180.0" prefHeight="28.0" prefWidth="223.0" promptText="salle" />
-                              <JFXButton fx:id="btn" layoutX="171.0" layoutY="405.0"  prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #99ABD6;" text="Ajouter" />
+                              <JFXButton fx:id="btn" layoutX="171.0" layoutY="405.0" onAction="#salleDispo" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #99ABD6;" text="Ajouter" />
                               <TextField fx:id="hd" layoutX="73.0" layoutY="297.0" prefHeight="25.0" prefWidth="155.0" promptText="H de debut" />
                               <TextField fx:id="hf" layoutX="73.0" layoutY="342.0" prefHeight="25.0" prefWidth="155.0" promptText="H de fin " />
                               <ImageView fitHeight="51.0" fitWidth="57.0" layoutX="16.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">

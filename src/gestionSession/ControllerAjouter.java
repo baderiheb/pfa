@@ -284,7 +284,7 @@ ServiceSession ss = new ServiceSession();
 
         ResultSet rs =ss.afficher();
         while(rs.next()){
-            Vector<Formateur> formats = new Vector<Formateur>() ;
+            Vector<Formateur> formats = new Vector<Formateur>();
             ResultSet rs2=sf.afficherID(rs.getString(2));
             while(rs2.next()){
 
@@ -327,18 +327,52 @@ Obs.add(s);
         if((VerifieHD()==false)&&(VerifieHF()==false)){
             t.trayError("Veuillez verifier l'heure de debut ou l'heure de fin de la session ");
         }
+        if(Integer.parseInt(hd.getText())>Integer.parseInt(hf.getText())){
+            t.trayError("une erreur au niveau du l'heure de debut ou l'heure de fin ");
+        }
         ResultSet rs = sf.afficherCin((String) cin.getValue());
       String id="";
         while (rs.next()) {
              id=rs.getString(1);
         }
+        String cin1,cin2,cin3;
+        cin1= String.valueOf(forma3.getValue());
+       //cin2=String.valueOf();
+        String req="";
+        if(cin1.equalsIgnoreCase("null")){
+            req ="insert into sess values(ids.nextval,'["+id+"]',"+forma.getValue()+",'"+name.getText()+"',TO_DATE('"+DateS.getValue()+"','YYYY-MM-DD'),"+nbreh.getText()+","+salle.getValue()+",TO_DATE('"+DateF.getValue()+"','YYYY-MM-DD'),'"+commentaire.getText()+"','"+temps.getValue()+"',"+hd.getText()+","+hf.getText()+")";
+
+        }
+        System.out.printf(String.valueOf(cin.getValue()));
+        ss.ajouter(req);
 
    afficher();
 
     }
-    public void salleDisqpo(){
+    //tester la disponabilité de la salle
+    public void salleDispo() throws SQLException {
+        String d1, d2 ;int i=0;
+        d1= String.valueOf(DateS.getValue());
+        d2= String.valueOf(DateF.getValue());
 
-    }
+        ResultSet rs = ss.rechercher(String.valueOf(salle.getValue()),d1,d2,hd.getText(),hf.getText());
+        while (rs.next()){
+            i++;
+            }
+        if (i<0){
+            ajouter();
+        }else{
+            t.trayError("La salle choisi est occupé pendant cette periode ");
+        }
+
+        }
+
+
+
+
+
+
+
     public static final LocalDate LOCAL_DATE (String dateString){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(dateString, formatter);

@@ -1,5 +1,7 @@
 package gestionSession;
 
+import Service.ServiceFormateur;
+import Service.ServiceFormation;
 import Service.ServiceSession;
 import com.jfoenix.controls.JFXButton;
 import connectionDB.DataSource;
@@ -12,10 +14,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
@@ -30,17 +35,22 @@ import java.util.ResourceBundle;
 import java.util.Vector;
 
 public class ControllerAfficher implements Initializable {
-    Connection cnx = DataSource.getInstance();
-
     @FXML
-    private Pane ShowS;
-
+    private Text text ;
     @FXML
-    private JFXButton retourner;
-
+    private TextField nomF;
     @FXML
-    private TableView<Session> table1;
-
+    private TextField jourS;
+    @FXML
+    private  TextArea commen ;
+    @FXML
+    private TextField hd;
+    @FXML
+    private TextField hf;
+    @FXML
+    private TableView<Session> table;
+@FXML
+private TextField a;
     @FXML
     private TableColumn<Session, Integer> IDs;
     @FXML
@@ -49,204 +59,98 @@ public class ControllerAfficher implements Initializable {
     private TableColumn<Session, Integer> IDfor;
     @FXML
     private TableColumn<Session, String> nom;
-
     @FXML
     private TableColumn<Session,String> ddebut;
     @FXML
     private  TableColumn<Session,Float> duree;
-
     @FXML
-    private TableView<Formation> table2;
-
+    private TableColumn<Session,String> dateFin;
     @FXML
-    private TableColumn<Formation,Integer> ID;
-    @FXML
-    private TableColumn<Formation, String> names;
-
-    @FXML
-    private TableColumn<Formation,String > prenom;
-
-    @FXML
-    private TableColumn<Formation, String> typ;
-
-    @FXML
-    private TableColumn<Formation, String> niveau;
-
-    @FXML
-    private TableColumn<Formation, String> nature;
-
-    @FXML
-    private TableColumn<Formation, String> domain;
-
-    @FXML
-    private TableColumn<Formation, Float> tarifs;
-
-    @FXML
-    private TableColumn<Formation, String> Duree;
-
-    @FXML
-    private TableView<Formateur> table3;
-
-    @FXML
-    private TableColumn<Formateur, Integer>ID1;
-    @FXML
-    private  TableColumn<Formateur, String> nom1;
-    @FXML
-    private  TableColumn<Formateur,String> prenom1;
-    @FXML
-    private  TableColumn<Formateur,String> adresse;
-    @FXML
-    private  TableColumn<Formateur,Integer> cin;
-    @FXML
-    private  TableColumn<Formateur,Integer> Numtel;
-
-    @FXML
-    private Label l1;
-
-    @FXML
-    private Label l2;
+    private TableColumn<Session,Integer> numsalle;
     ObservableList<Formation> Obsfor ;
+    ObservableList<Session> Obs;
+    public Formateur f ;
+    public Formation form;
+    ServiceSession ss = new ServiceSession();
+    ServiceFormateur sf=new ServiceFormateur();
+    ServiceFormation sforma = new ServiceFormation();
+static  int s ;
+public void detail() throws IOException,SQLException {
+ s=table.getSelectionModel().getSelectedItem().getIds();
+System.out.printf(String.valueOf(s));
+    Parent root = FXMLLoader.load(getClass().getResource("AffichageDetails.fxml"));
+   Stage primaryStage = new Stage();
+    primaryStage.setTitle("Details");
+    Scene scene = new Scene(root, 456 ,619);
+//        scene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
+    primaryStage.setScene(scene);
+    primaryStage.show();
+}
 
-    public void afficher2(){
+public void remplissage() throws SQLException{
+System.out.printf(String.valueOf(s));
+    ResultSet rs =ss.afficher(s);
+    while (rs.next()){
 
-        try{
-            Obsfor=FXCollections.observableArrayList();
-            Connection con = DataSource.getInstance();
-            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM  formation where idfor="+table1.getSelectionModel().getSelectedItem().getIdformation());
-            while(rs.next()){
-                Obsfor.add(new Formation(rs.getInt(1),  rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6) ,rs.getString(7), rs.getFloat(8)));
-            }
+        ResultSet rs2= sforma.afficherID(rs.getString(3));
+        while(rs2.next()){
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+            String s1=rs2.getString(2);
+            System.out.printf(s1);
+            nomF.setText(s1);
         }
-
-        ID.setCellValueFactory(new PropertyValueFactory<Formation,Integer>("idfor"));
-        names.setCellValueFactory(new PropertyValueFactory<Formation,String>("nom"));
-        typ.setCellValueFactory(new PropertyValueFactory<Formation,String>("type"));
-        niveau.setCellValueFactory(new PropertyValueFactory<Formation,String>("niveau"));
-        nature.setCellValueFactory(new PropertyValueFactory<Formation,String>("nature"));
-        domain.setCellValueFactory(new PropertyValueFactory<Formation,String>("domaine"));
-        Duree.setCellValueFactory(new PropertyValueFactory<Formation,String>("duree"));
-        tarifs.setCellValueFactory(new PropertyValueFactory<Formation,Float>("tarif"));
-
-
-        table2.setItems(Obsfor);
-
-
-
-
+        jourS.setText(rs.getString(10));
+        commen.setText(rs.getString(9));
+        hd.setText(rs.getString(11));
+        hf.setText(rs.getString(12));
+        String text1 ="© Information detaillés de la session "+rs.getString(4);
+        text.setText(text1);
     }
 
 
+}
 
-    public Formateur f ;
-    public Formation form;
-
-
-
-    ObservableList<Session> Obs ;
-    ObservableList<Formateur> Obs1,Obsf ;
-
-
-
-
-    public void afficher1(){
+    public void afficher(){
         try{
-
             Obs=FXCollections.observableArrayList();
-        ServiceSession sess =new ServiceSession();
-        ResultSet rs = sess.afficher();
-        String req2,req3;
-        Connection con=DataSource.getInstance();
-            while(rs.next()){
 
-                Vector <Formateur> formats = new Vector<Formateur>() ;
-                req2="select * from forma where idf="+rs.getString(2);
-                ResultSet rs2=con.createStatement().executeQuery(req2);
+
+            ResultSet rs =ss.afficher();
+            while(rs.next()){
+                Vector<Formateur> formats = new Vector<Formateur>();
+                ResultSet rs2=sf.afficherID(rs.getString(2));
                 while(rs2.next()){
 
                     f=new Formateur (rs2.getInt(1),rs2.getString(2),rs2.getString(3),rs2.getString(4),rs2.getInt(5),rs2.getInt(6));
                     formats.add(f);
-
                 }
-                req3="select * from formation where idfor="+rs.getString(3);
-                ResultSet rs3=con.createStatement().executeQuery(req3);
+                ResultSet rs3=sforma.afficherID(rs.getString(3));
                 while (rs3.next()){
                     form=new Formation(rs3.getInt(1),  rs3.getString(2), rs3.getString(3), rs3.getString(4), rs3.getString(5), rs3.getString(6) ,rs3.getString(7), rs3.getFloat(8));
                 }
+
                 Session s =new Session(rs.getInt(1),formats,form,rs.getString(4),rs.getString(5),rs.getFloat(6),rs.getInt(7),rs.getString(8),rs.getString(9));
                 Obs.add(s);
-
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
         IDs.setCellValueFactory(new PropertyValueFactory<Session,Integer>("ids"));
         IDf.setCellValueFactory(new PropertyValueFactory<Session,Integer>("forma"));
         IDfor.setCellValueFactory(new PropertyValueFactory<Session,Integer>("idformation"));
         nom.setCellValueFactory(new PropertyValueFactory<Session,String>("nom"));
         ddebut.setCellValueFactory(new PropertyValueFactory<Session,String>("date"));
         duree.setCellValueFactory(new PropertyValueFactory<Session,Float>("duree"));
-
-
-
-
-        table1.setItems(Obs);
-
-
-
+        numsalle.setCellValueFactory(new PropertyValueFactory<Session,Integer>("numSalle"));
+        dateFin.setCellValueFactory(new PropertyValueFactory<Session,String>("dateFin"));
+        table.setItems(Obs);
     }
-
-
-    public void afficher(){
-
-        try{
-            Obsf=FXCollections.observableArrayList();
-            Connection con = DataSource.getInstance();
-            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM forma where idf ="+table1.getSelectionModel().getSelectedItem().getForma());
-            while(rs.next()){
-                Obsf.add(new Formateur(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6)));
-
-
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        ID1.setCellValueFactory(new PropertyValueFactory<Formateur,Integer>("id"));
-        nom1.setCellValueFactory(new PropertyValueFactory<Formateur,String>("nom"));
-        prenom1.setCellValueFactory(new PropertyValueFactory<Formateur,String>("prenomF"));
-        adresse.setCellValueFactory(new PropertyValueFactory<Formateur,String>("adresse"));
-        cin.setCellValueFactory(new PropertyValueFactory<Formateur,Integer>("cin"));
-        Numtel.setCellValueFactory(new PropertyValueFactory<Formateur,Integer>("numTel"));
-
-
-        table3.setItems(Obsf);
-
-
-
-
-    }
-    public void control(){
-        table2.setVisible(true);
-        table3.setVisible(true );
-        l1.setVisible(true);
-        l2.setVisible(true );
-        afficher();
-        afficher2();
-    }
-
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        table2.setVisible(false);
-        table3.setVisible(false );
-        l1.setVisible(false);
-        l2.setVisible(false);
-afficher1();
-//loadList();
+        //afficher();
 
     }
 }

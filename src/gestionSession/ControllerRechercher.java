@@ -1,5 +1,8 @@
 package gestionSession;
 
+import Service.ServiceFormateur;
+import Service.ServiceFormation;
+import Service.ServiceSession;
 import com.jfoenix.controls.JFXButton;
 import connectionDB.DataSource;
 import connectionDB.Formateur;
@@ -33,7 +36,8 @@ public class ControllerRechercher implements Initializable {
 
     @FXML
     private TableView<Session> table;
-
+    @FXML
+    private TextField a;
     @FXML
     private TableColumn<Session, Integer> IDs;
     @FXML
@@ -42,11 +46,21 @@ public class ControllerRechercher implements Initializable {
     private TableColumn<Session, Integer> IDfor;
     @FXML
     private TableColumn<Session, String> nom;
-
     @FXML
-    private TableColumn<Session, String> ddebut;
+    private TableColumn<Session,String> ddebut;
     @FXML
-    private TableColumn<Session, Float> duree;
+    private  TableColumn<Session,Float> duree;
+    @FXML
+    private TableColumn<Session,String> dateFin;
+    @FXML
+    private TableColumn<Session,Integer> numsalle;
+    ObservableList<Formation> Obsfor ;
+    ObservableList<Session> Obs;
+    public Formateur f ;
+    public Formation form;
+    ServiceSession ss = new ServiceSession();
+    ServiceFormateur sf=new ServiceFormateur();
+    ServiceFormation sforma = new ServiceFormation();
     @FXML
     private AnchorPane prec;
 
@@ -70,14 +84,6 @@ public class ControllerRechercher implements Initializable {
     private DatePicker DateS;
     @FXML
     private JFXButton ret;
-
-
-    public Formateur f;
-    public Formation form;
-
-
-    ObservableList<Session> Obs;
-    ObservableList<Formateur> Obs1;
 
     public void afficher() {
         try {

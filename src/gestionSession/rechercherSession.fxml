@@ -20,7 +20,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <JFXButton fx:id="rech" layoutX="180.0" layoutY="234.0" onAction="#rechercher" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #99ABD6;" text="rechercher" />
+            <JFXButton fx:id="rech" layoutX="177.0" layoutY="250.0" onAction="#rechercher" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #99ABD6;" text="rechercher" />
             <TextField fx:id="element" layoutX="14.0" layoutY="198.0" prefHeight="26.0" prefWidth="209.0" style="-fx-background-color: #CCDFE7;" />
             <Label fx:id="txt1" layoutX="5.0" layoutY="172.0" text="veuillez choisir a méthode de recherche">
                <font>
@@ -39,19 +39,21 @@
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </Label>
-            <JFXButton fx:id="confirmer" layoutX="180.0" layoutY="235.0" onAction="#confirmer" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #99ABD6;" text="Confirmer" />
-            <JFXButton fx:id="ret" layoutX="83.0" layoutY="234.0" onAction="#retourner" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #32CD32;" text="Annuler" />
+            <JFXButton fx:id="confirmer" layoutX="177.0" layoutY="250.0" onAction="#confirmer" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #99ABD6;" text="Confirmer" />
+            <JFXButton fx:id="ret" layoutX="83.0" layoutY="250.0" onAction="#retourner" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #32CD32;" text="Annuler" />
          </children>
       </Pane>
       <JFXButton fx:id="retourner" layoutX="672.0" layoutY="431.0" prefHeight="32.0" prefWidth="69.0" style="-fx-background-color: #32CD32;" text="Retourner" />
-      <TableView fx:id="table" layoutX="266.0" layoutY="74.0" prefHeight="298.0" prefWidth="646.0">
+      <TableView fx:id="table" layoutX="266.0" layoutY="40.0" onDragDetected="#afficher" onMouseClicked="#detail" onMouseEntered="#afficher" prefHeight="337.0" prefWidth="712.0">
          <columns>
-            <TableColumn fx:id="IDs" prefWidth="115.0" text="ID Session" />
-            <TableColumn fx:id="IDf" prefWidth="87.0" text="ID Formateur" />
-            <TableColumn fx:id="IDfor" prefWidth="96.0" text="ID Formation" />
-            <TableColumn fx:id="nom" prefWidth="105.0" text="Nom Formation" />
-            <TableColumn fx:id="ddebut" prefWidth="115.0" text="Date Debut" />
-            <TableColumn fx:id="duree" prefWidth="177.0" text="Durée" />
+            <TableColumn fx:id="IDs" prefWidth="66.0" text="ID Session" />
+            <TableColumn fx:id="IDf" prefWidth="79.0" text="ID Formateur" />
+            <TableColumn fx:id="IDfor" prefWidth="85.0" text="ID Formation" />
+            <TableColumn fx:id="numsalle" prefWidth="85.0" text="Numéro salle " />
+            <TableColumn fx:id="nom" prefWidth="103.0" text="Nom Formation" />
+            <TableColumn fx:id="ddebut" prefWidth="91.0" text="Date Debut" />
+            <TableColumn fx:id="dateFin" prefWidth="77.0" text="Date Fin" />
+            <TableColumn fx:id="duree" prefWidth="166.0" text="Durée" />
          </columns>
       </TableView>
    </children>

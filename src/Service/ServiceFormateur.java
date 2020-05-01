@@ -15,7 +15,8 @@ public class ServiceFormateur {
     // affichage avec un condition d'id
 
     public ResultSet afficherID(String ID ) throws SQLException {
-String req ="select * from forma where idf="+ID;
+        String numberOnly= ID.replaceAll("[^0-9]", "");
+String req ="select * from forma where idf="+numberOnly;
         ResultSet rs = cnx.createStatement().executeQuery(req);
    return rs ;
     }
